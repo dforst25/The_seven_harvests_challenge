@@ -28,6 +28,20 @@ class ResidentialBuilding:
                 return True
         return False
 
+    def get_rooms_info(self):
+        full_rooms = len([room for room in self.rooms if room.is_full()])
+        empty_rooms = len([room for room in self.rooms if room.is_empty()])
+        partially_full_rooms = self.rooms_amount - (full_rooms + empty_rooms)
+        rooms_info = {
+            "full_rooms": full_rooms,
+            "empty_rooms": empty_rooms,
+            "partially_full_rooms": partially_full_rooms
+        }
+        return {
+            "building_num": self.building_num,
+            "rooms_info": rooms_info
+        }
+
     @staticmethod
     def create_building(building_num):
         return ResidentialBuilding(building_num, Room.create_room_list())

@@ -11,11 +11,13 @@ class Base:
             residential_buildings = []
         self.residential_buildings = residential_buildings
         self.residential_buildings_amount = residential_buildings_amount
+        self.soldiers = []
 
     def soldiers_amounts(self):
         return sum([residential_building.soldiers_amount() for residential_building in self.residential_buildings])
 
     def add_soldier(self, new_soldier: Soldier):
+        self.soldiers.append(new_soldier)
         for residential_building in self.residential_buildings:
             if residential_building.add_soldier(new_soldier):
                 return True
@@ -27,8 +29,7 @@ class Base:
         for i in range(soldiers_amount):
             if self.add_soldier(sorted_soldiers[i]):
                 sorted_soldiers[i].residential_assignment = True
-            else:
-                return False
+        return False
 
     @staticmethod
     def create_base():

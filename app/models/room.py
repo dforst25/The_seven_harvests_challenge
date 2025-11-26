@@ -15,6 +15,9 @@ class Room:
     def is_full(self):
         return self.soldiers_amount() == self.bed_amount
 
+    def is_empty(self):
+        return self.soldiers_amount() == 0
+
     def add_soldier(self, new_soldier: Soldier) -> bool:
         if self.is_full():
             return False
